@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>FpS — multiplayer shooter</title>
+<link rel="stylesheet" href="style.css" />
+<script type="importmap">
+{ "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js" } }
+</script>
+</head>
+<body>
+<div id="device-badge"></div>
+
+<!-- MAIN MENU -->
+<div id="menu">
+  <div class="menu-card">
+    <h1 class="logo">F<span>p</span>S</h1>
+    <p class="tagline">3D MULTIPLAYER ARENA SHOOTER</p>
+    <input id="nickname" maxlength="16" placeholder="Your nickname…" value="Player" />
+    <div class="servers">
+      <h2>SERVERS</h2>
+      <div id="server-list"><div class="server-row loading">connecting…</div></div>
+    </div>
+    <button id="play-btn">▶ &nbsp;JOIN TEST</button>
+    <button id="play-fps2" onclick="location.href='./fps2/src.html?lobby=test'" style="width:100%;margin-top:8px;padding:14px;font-size:18px;font-weight:800;border:none;border-radius:12px;background:linear-gradient(180deg,#1e90ff,#1565c0);color:#fff;cursor:pointer;box-shadow:0 4px 0 #0d47a1">🎮 &nbsp;PLAY FPS2 ON TEST</button>
+    <p id="menu-error"></p>
+    <div class="help" id="controls-help"></div>
+    <p class="foot">WASD move · Mouse look · Click shoot · R reload · Space jump · Tab scores · Enter chat &nbsp;|&nbsp; Mobile: auto touch controls</p>
+  </div>
+</div>
+
+<!-- HUD -->
+<div id="hud" class="hidden">
+  <div id="crosshair"><div class="d"></div><div class="d t"></div><div class="d b"></div><div class="d l"></div><div class="d r"></div></div>
+  <div id="hitmarker">✕</div>
+  <div id="topbar">
+    <div id="server-name">🟢 test</div>
+    <div id="killfeed"></div>
+    <div id="score-mini">0 K · 0 D</div>
+  </div>
+  <div id="bottom-left">
+    <div id="hp-bar"><div id="hp-fill"></div><span id="hp-text">100</span></div>
+    <div id="ammo"><span id="ammo-mag">30</span><span class="dim"> / 90</span><span id="reload-hint"></span></div>
+  </div>
+  <div id="respawn-overlay" class="hidden"><h2>YOU DIED</h2><p id="respawn-timer">respawning…</p></div>
+  <div id="scoreboard" class="hidden"><h3>test — scoreboard</h3><table id="score-table"></table></div>
+  <div id="chat-box"><div id="chat-log"></div><input id="chat-input" maxlength="120" placeholder="chat… (Enter)" /></div>
+  <div id="hint">click to lock mouse · WASD move · R reload</div>
+</div>
+
+<!-- MOBILE CONTROLS -->
+<div id="mobile-ui" class="hidden">
+  <div id="joystick"><div id="stick"></div></div>
+  <div id="look-area"></div>
+  <div id="mob-btns">
+    <button id="btn-fire">🔥</button>
+    <button id="btn-jump">▲</button>
+    <button id="btn-reload">⟳</button>
+  </div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script type="module" src="client.js"></script>
+</body>
+</html>
